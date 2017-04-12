@@ -1,0 +1,11 @@
+<div class="container body-content">
+<div class="jumbotron">
+    <h1>Welcome to Eye Tourist!</h1>
+    <p class="lead">Take a picture of text and have it translated.</p>
+</div>
+<div><input type="radio" name="imagetype" value="url"> URL
+  <input type="radio" name="imagetype" value="localimage"> Local Image </div>
+<div class="col-xs-12" *ngIf="selectURL"><p><label>URL: </label><input type="text" [(ngModel)]="imgurl"></p></div>
+<div class="col-xs-12" *ngIf="selectLocalImage"><p><label>Image: </label><input type="file" [(ngModel)]="locimg"></p></div>
+<div class="col-xs-6"><button (click)=onImageSupplied()>Translate</button></div>
+</div>
