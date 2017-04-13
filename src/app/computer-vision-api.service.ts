@@ -17,12 +17,21 @@ export class ComputerVisionAPIService {
 
   constructor(private http: Http) { }
 
-  getVision(language: string): Promise<any[]> {
+  getVision(language: string, imgurl?: string, file?:File): Promise<any[]> {
     let requestURLString = this.url + "?language=" + language + "&detectOrientation%20=true";
-    let body = {url: "http://puu.sh/vhS5c/f9bc6a8a1f.png"};
     let headers = new Headers();
+    var img:any;
+    var body:any;
+    if(imgurl != null){
+      img = imgurl;
+      body = {url: imgurl};
     headers.append("Content-Type","application/json");
-    headers.append("Ocp-Apim-Subscription-Key", this.key)
+    }else if(file != null){
+      img = file;
+      headers.append("Content-Type","application/octet-stream");
+      body = img;
+    }
+    headers.append("Ocp-Apim-Subscription-Key", this.key);
     return this.http.post(requestURLString, body, {headers: headers})
     .toPromise()
     .then(response => response.json() as any[])
