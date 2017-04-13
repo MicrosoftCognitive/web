@@ -1,11 +1,77 @@
 <div class="container body-content">
-<div class="jumbotron">
+  <div class="jumbotron">
     <h1>Welcome to Eye Tourist!</h1>
     <p class="lead">Take a picture of text and have it translated.</p>
-</div>
-<div><input type="radio" name="imagetype" value="url"> URL
-  <input type="radio" name="imagetype" value="localimage"> Local Image </div>
-<div class="col-xs-12" *ngIf="selectURL"><p><label>URL: </label><input type="text" [(ngModel)]="imgurl"></p></div>
-<div class="col-xs-12" *ngIf="selectLocalImage"><p><label>Image: </label><input type="file" [(ngModel)]="locimg"></p></div>
-<div class="col-xs-6"><button (click)=onImageSupplied()>Translate</button></div>
-</div>
+  </div>
+  <div class="col-xs-4">
+    <div><button (click)="selectURL = true; selectLocalImage = false;"> URL </button>
+      <button (click)="selectURL = false; selectLocalImage = true;"> Local Image </button></div>
+    <div class="col-xs-12" *ngIf="selectURL">
+      <p><label>URL: </label><input type="text" [(ngModel)]="imgurl"></p>
+    </div>
+    <div class="col-xs-12" *ngIf="selectLocalImage">
+      <p><label>Image: </label><input type="file" (change)="fileChange($event)" [(ngModel)]="locimg" accept=".jpg,.jpeg,.png,.gif,.bmp"></p>
+    </div>
+    <br>
+    <h2><b>Reading Language:</b> {{language}}</h2>
+    <table border="1">
+      <tr>
+        <td><img src="../../assets/Flags/canadian.png" alt="canadian" (click)="language = Languages.English"></td>
+        <td><img src="../../assets/Flags/chinese.png" alt="chinese" (click)="language = Languages.ChineseSimplified"></td>
+        <td><img src="../../assets/Flags/dutch.png" alt="dutch" (click)="language = Languages.Dutch"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/finnish.png" alt="finnish" (click)="language = Languages.Finnish"></td>
+        <td><img src="../../assets/Flags/french.png" alt="french" (click)="language = Languages.French"></td>
+        <td><img src="../../assets/Flags/german.png" alt="german" (click)="language = Languages.German"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/greek.png" alt="korean" (click)="language = Languages.Korean"></td>
+        <td><img src="../../assets/Flags/greekk.png" alt="greek" (click)="language = Languages.Greek"></td>
+        <td><img src="../../assets/Flags/italian.png" alt="italian" (click)="language = Languages.Italian"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/japanese.png" alt="japanese" (click)="language = Languages.Japanese"></td>
+        <td><img src="../../assets/Flags/spanish.png" alt="spanish" (click)="language = Languages.Spanish"></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <div class="col-xs-6"><button (click)=onImageSupplied()>Read</button></div>
+  </div>
+  <div class="col-xs-4">
+    <h3>Image text:</h3>
+    <br>
+    <p>{{visionText}}</p>
+
+    <h2><b>Translate to:</b> {{tolanguage}}</h2>
+    <table border="1">
+      <tr>
+        <td><img src="../../assets/Flags/canadian.png" alt="canadian" (click)="tolanguage = Languages.English"></td>
+        <td><img src="../../assets/Flags/chinese.png" alt="chinese" (click)="tolanguage = Languages.ChineseSimplified"></td>
+        <td><img src="../../assets/Flags/dutch.png" alt="dutch" (click)="tolanguage = Languages.Dutch"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/finnish.png" alt="finnish" (click)="tolanguage = Languages.Finnish"></td>
+        <td><img src="../../assets/Flags/french.png" alt="french" (click)="tolanguage = Languages.French"></td>
+        <td><img src="../../assets/Flags/german.png" alt="german" (click)="tolanguage = Languages.German"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/greek.png" alt="korean" (click)="tolanguage = Languages.Korean"></td>
+        <td><img src="../../assets/Flags/greekk.png" alt="greek" (click)="tolanguage = Languages.Greek"></td>
+        <td><img src="../../assets/Flags/italian.png" alt="italian" (click)="tolanguage = Languages.Italian"></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/Flags/japanese.png" alt="japanese" (click)="tolanguage = Languages.Japanese"></td>
+        <td><img src="../../assets/Flags/spanish.png" alt="spanish" (click)="tolanguage = Languages.Spanish"></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <div class="col-xs-6"><button (click)=translateText()>Translate</button></div>
+  </div>
+  <div class="col-xs-4">
+    <h3>Translated text:</h3>
+    <br>
+    <p>{{translatedText}}</p>
+  </div>
