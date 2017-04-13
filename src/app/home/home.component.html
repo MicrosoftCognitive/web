@@ -4,6 +4,12 @@
     <p class="lead">Take a picture of text and have it translated.</p>
   </div>
   <div class="col-xs-4">
+    <h3>File requirements:</h3>
+    <ul>
+      <li>Supported image formats: JPEG, PNG, GIF, BMP.</li>
+      <li>Image file size must be less than 4MB.</li>
+      <li>Image dimensions must be at least 50 x 50.</li>
+    </ul>
     <div><button (click)="selectURL = true; selectLocalImage = false;"> URL </button>
       <button (click)="selectURL = false; selectLocalImage = true;"> Local Image </button></div>
     <div class="col-xs-12" *ngIf="selectURL">

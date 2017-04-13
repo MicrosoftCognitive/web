@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
 
   onImageSupplied(): void{
     var t = this;
+	this.visionText = "";
     if(this.selectURL){
     this.visionService.getVision(this.language, this.imgurl, null)
     .then(vision => {
@@ -93,6 +94,7 @@ export class HomeComponent implements OnInit {
 
   translateText(){
     var t = this;
+	this.translatedText = "";
     var lang = this.language;
     if(lang == "unk"){
       lang = "en";
